@@ -7,6 +7,7 @@ let overlayWindow = null;
 let tray = null;
 let updateInterval = null;
 let overlayActive = false; // Whether the overlay system is "started"
+const SHORTCUT = 'CommandOrControl+Shift+R';
 
 // ── Control Window ─────────────────────────────────────────────
 
@@ -28,10 +29,12 @@ function createControlWindow() {
   controlWindow.loadFile(path.join(__dirname, 'src', 'control', 'index.html'));
 
   controlWindow.on('close', (e) => {
-    // Hide to tray instead of quitting
     if (!app.isQuitting) {
       e.preventDefault();
       controlWindow.hide();
+    } else {
+      // App is actually quitting — make sure everything is cleaned up
+      stopOverlay();
     }
   });
 }
@@ -125,7 +128,7 @@ function startOverlay() {
 
   createOverlayWindow();
 
-  globalShortcut.register('Shift+R', toggleOverlay);
+  globalShortcut.register(SHORTCUT, toggleOverlay);
 
   fetchAndSendData();
   startAutoUpdate();
@@ -235,6 +238,11 @@ app.whenReady().then(() => {
   ipcMain.on('control-close-to-tray', () => {
     if (controlWindow) controlWindow.hide();
   });
+});
+
+app.on('before-quit', () => {
+  app.isQuitting = true;
+  stopOverlay();
 });
 
 app.on('will-quit', () => {
