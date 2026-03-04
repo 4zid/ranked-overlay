@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ranked Overlay</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="titlebar">
+    <span class="titlebar-title">RANKED OVERLAY</span>
+    <div class="titlebar-buttons">
+      <button class="titlebar-btn minimize" id="btnMinimize">&#x2014;</button>
+      <button class="titlebar-btn close" id="btnClose">&#x2715;</button>
+    </div>
+  </div>
+
+  <div class="app">
+    <!-- Status Card -->
+    <div class="status-card" id="statusCard">
+      <div class="status-dot" id="statusDot"></div>
+      <span class="status-text" id="statusText">Detenido</span>
+    </div>
+
+    <!-- Info Panel (shown when running) -->
+    <div class="info-panel hidden" id="infoPanel">
+      <div class="info-row">
+        <span class="info-label">RANGO</span>
+        <span class="info-value" id="infoRank">--</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">RR</span>
+        <span class="info-value" id="infoRR">--</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">MODO</span>
+        <span class="info-value" id="infoMode">--</span>
+      </div>
+    </div>
+
+    <!-- Main Button -->
+    <button class="btn-main btn-start" id="btnToggle">
+      <span class="btn-icon" id="btnIcon">&#9654;</span>
+      <span id="btnText">INICIAR</span>
+    </button>
+
+    <!-- Shortcut Info -->
+    <div class="shortcut-info">
+      <kbd>Shift</kbd> + <kbd>R</kbd> para mostrar/ocultar overlay
+    </div>
+  </div>
+
+  <script src="control.js"></script>
+</body>
+</html>

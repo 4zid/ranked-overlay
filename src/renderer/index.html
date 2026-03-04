@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ranked Overlay</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="overlay" class="overlay hidden">
+    <div class="card">
+      <div class="header">
+        <div class="valorant-logo">V</div>
+        <span class="title">RANKED</span>
+      </div>
+      <div class="content">
+        <div class="rank-section">
+          <div class="rank-name" id="rankName">--</div>
+          <div class="rr-container">
+            <span class="rr-label">RR</span>
+            <span class="rr-value" id="rrValue">0</span>
+            <div class="rr-bar-bg">
+              <div class="rr-bar" id="rrBar"></div>
+            </div>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="game-mode-section">
+          <span class="mode-label">MODO</span>
+          <span class="mode-value" id="gameMode">--</span>
+        </div>
+      </div>
+      <div class="error-msg hidden" id="errorMsg"></div>
+    </div>
+  </div>
+  <script src="renderer.js"></script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: transparent;
+  overflow: hidden;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  -webkit-app-region: no-drag;
+  user-select: none;
+}
+
+.overlay {
+  padding: 8px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.overlay.hidden {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.card {
+  background: rgba(15, 15, 25, 0.88);
+  border: 1px solid rgba(255, 70, 85, 0.3);
+  border-radius: 12px;
+  padding: 16px 20px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 70, 85, 0.08);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.valorant-logo {
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, #ff4655, #ff6b6b);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 14px;
+  color: #fff;
+}
+
+.title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rank-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.rank-name {
+  font-size: 20px;
+  font-weight: 800;
+  color: #ff4655;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  transition: color 0.4s ease;
+}
+
+.rr-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.rr-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 1px;
+}
+
+.rr-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  min-width: 28px;
+  text-align: right;
+}
+
+.rr-bar-bg {
+  width: 60px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.rr-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #ff4655, #ff6b6b);
+  border-radius: 2px;
+  transition: width 0.6s ease;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.game-mode-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mode-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 2px;
+}
+
+.mode-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.error-msg {
+  margin-top: 8px;
+  font-size: 11px;
+  color: #ff6b6b;
+  text-align: center;
+}
+
+.error-msg.hidden {
+  display: none;
+}
+
+/* Status indicator dot */
+.mode-value::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 6px;
+  background: #5a5a5a;
+  vertical-align: middle;
+  transition: background 0.3s ease;
+}
+
+.mode-value.in-game::before {
+  background: #2dce89;
+  box-shadow: 0 0 6px rgba(45, 206, 137, 0.5);
+}
+
+.mode-value.agent-select::before {
+  background: #e6c84d;
+  box-shadow: 0 0 6px rgba(230, 200, 77, 0.5);
+}
+
+.mode-value.lobby::before {
+  background: #5a5a5a;
+}
