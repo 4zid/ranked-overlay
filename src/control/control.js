@@ -9,8 +9,13 @@ const infoRR = document.getElementById('infoRR');
 const infoMode = document.getElementById('infoMode');
 const btnMinimize = document.getElementById('btnMinimize');
 const btnClose = document.getElementById('btnClose');
+const rankedReminder = document.getElementById('rankedReminder');
 
 let running = false;
+
+rankedReminder.addEventListener('change', () => {
+  window.control.setRankedReminder(rankedReminder.checked);
+});
 
 btnToggle.addEventListener('click', async () => {
   if (running) {

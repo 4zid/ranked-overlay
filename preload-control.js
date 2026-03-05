@@ -6,5 +6,6 @@ contextBridge.exposeInMainWorld('control', {
   minimize: () => ipcRenderer.send('control-minimize'),
   closeToTray: () => ipcRenderer.send('control-close-to-tray'),
   onStateChange: (callback) => ipcRenderer.on('state-change', (_e, state) => callback(state)),
-  onRankUpdate: (callback) => ipcRenderer.on('rank-update', (_e, data) => callback(data))
+  onRankUpdate: (callback) => ipcRenderer.on('rank-update', (_e, data) => callback(data)),
+  setRankedReminder: (enabled) => ipcRenderer.send('set-ranked-reminder', enabled)
 });

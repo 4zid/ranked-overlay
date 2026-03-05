@@ -231,7 +231,8 @@ async function getAllData() {
       tier: mmr.tier,
       rr: mmr.rr,
       gameStatus: gameMode.status,
-      gameMode: gameMode.queueName
+      gameMode: gameMode.queueName,
+      queueId: gameMode.queueId
     };
   } catch (err) {
     cachedAuth = null;

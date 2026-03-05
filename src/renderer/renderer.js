@@ -4,6 +4,8 @@ const rrValueEl = document.getElementById('rrValue');
 const rrBarEl = document.getElementById('rrBar');
 const gameModeEl = document.getElementById('gameMode');
 const errorMsgEl = document.getElementById('errorMsg');
+const alertOverlay = document.getElementById('alertOverlay');
+const alertModeEl = document.getElementById('alertMode');
 
 function updateUI(data) {
   if (!data.ok) {
@@ -53,4 +55,14 @@ window.api.onOverlayHide(() => {
 // Receive pushed data updates
 window.api.onRankData((data) => {
   updateUI(data);
+});
+
+// Ranked reminder alert
+window.api.onAlert((alert) => {
+  if (alert.show) {
+    alertModeEl.textContent = alert.modeName;
+    alertOverlay.classList.remove('hidden');
+  } else {
+    alertOverlay.classList.add('hidden');
+  }
 });

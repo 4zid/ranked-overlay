@@ -7,14 +7,17 @@ let overlayWindow = null;
 let tray = null;
 let updateInterval = null;
 let overlayActive = false; // Whether the overlay system is "started"
-const SHORTCUT = 'CommandOrControl+Shift+R';
+let rankedReminderEnabled = false;
+let alertShowing = false;
+const SHORTCUT = 'Alt+Shift+T';
+const NON_RANKED_QUEUES = ['unrated', 'spikerush', 'deathmatch', 'ggteam', 'onefa', 'swiftplay', 'hurm'];
 
 // ── Control Window ─────────────────────────────────────────────
 
 function createControlWindow() {
   controlWindow = new BrowserWindow({
     width: 340,
-    height: 380,
+    height: 440,
     frame: false,
     resizable: false,
     maximizable: false,
@@ -47,9 +50,9 @@ function createOverlayWindow() {
   const { width: screenWidth } = screen.getPrimaryDisplay().workAreaSize;
 
   overlayWindow = new BrowserWindow({
-    width: 320,
-    height: 200,
-    x: screenWidth - 340,
+    width: 340,
+    height: 300,
+    x: screenWidth - 360,
     y: 20,
     frame: false,
     transparent: true,
@@ -105,6 +108,27 @@ async function fetchAndSendData() {
   }
   if (controlWindow && !controlWindow.isDestroyed()) {
     controlWindow.webContents.send('rank-update', data);
+  }
+
+  // Ranked reminder: alert when entering a non-competitive queue
+  checkRankedReminder(data);
+}
+
+function checkRankedReminder(data) {
+  if (!rankedReminderEnabled || !overlayActive || !overlayWindow) return;
+
+  const isNonRanked = data.ok
+    && (data.gameStatus === 'agent_select' || data.gameStatus === 'in_game')
+    && data.queueId
+    && NON_RANKED_QUEUES.includes(data.queueId);
+
+  if (isNonRanked && !alertShowing) {
+    alertShowing = true;
+    overlayWindow.show();
+    overlayWindow.webContents.send('ranked-alert', { show: true, modeName: data.gameMode });
+  } else if (!isNonRanked && alertShowing) {
+    alertShowing = false;
+    overlayWindow.webContents.send('ranked-alert', { show: false });
   }
 }
 
@@ -237,6 +261,16 @@ app.whenReady().then(() => {
 
   ipcMain.on('control-close-to-tray', () => {
     if (controlWindow) controlWindow.hide();
+  });
+
+  ipcMain.on('set-ranked-reminder', (_e, enabled) => {
+    rankedReminderEnabled = enabled;
+    if (!enabled && alertShowing) {
+      alertShowing = false;
+      if (overlayWindow && !overlayWindow.isDestroyed()) {
+        overlayWindow.webContents.send('ranked-alert', { show: false });
+      }
+    }
   });
 });
 

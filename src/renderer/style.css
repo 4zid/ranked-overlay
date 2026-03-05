@@ -182,3 +182,64 @@ body {
 .mode-value.lobby::before {
   background: #5a5a5a;
 }
+
+/* ── Ranked Reminder Alert ─────────────────────────── */
+
+.alert-overlay {
+  position: fixed;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  opacity: 1;
+  z-index: 100;
+}
+
+.alert-overlay.hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-20px);
+  pointer-events: none;
+}
+
+.alert-card {
+  background: rgba(255, 50, 50, 0.92);
+  border: 2px solid #ff4655;
+  border-radius: 12px;
+  padding: 14px 28px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 30px rgba(255, 70, 85, 0.5), 0 0 60px rgba(255, 70, 85, 0.2);
+  animation: alert-pulse 2s ease-in-out infinite;
+}
+
+@keyframes alert-pulse {
+  0%, 100% { box-shadow: 0 4px 30px rgba(255, 70, 85, 0.5), 0 0 60px rgba(255, 70, 85, 0.2); }
+  50% { box-shadow: 0 4px 40px rgba(255, 70, 85, 0.8), 0 0 80px rgba(255, 70, 85, 0.4); }
+}
+
+.alert-icon {
+  font-size: 22px;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.alert-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.alert-mode {
+  font-weight: 800;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.alert-sub {
+  font-size: 18px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 2px;
+  margin-top: 4px;
+}

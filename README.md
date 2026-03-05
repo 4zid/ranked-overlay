@@ -10,7 +10,7 @@ A lightweight Windows desktop overlay for Valorant that displays your current **
 
 ## Features
 
-- **Keyboard shortcut** — Press `Ctrl+Shift+R` to toggle the overlay on/off
+- **Keyboard shortcut** — Press `Alt+Shift+T` to toggle the overlay on/off
 - **Always-on-top overlay** — Transparent, click-through, doesn't interfere with gameplay
 - **Real-time rank data** — Shows your competitive tier (Iron → Radiant) with RR points
 - **Game mode detection** — Displays current queue (Competitive, Deathmatch, Spike Rush, etc.)
@@ -18,6 +18,7 @@ A lightweight Windows desktop overlay for Valorant that displays your current **
 - **Control panel** — Start/Stop UI with live data preview
 - **System tray** — Minimizes to tray, runs in background
 - **Auto-refresh** — Updates every 30 seconds while visible
+- **Ranked reminder** — Optional alert when you queue unrated instead of competitive
 - **No API keys needed** — Reads directly from the local Riot Client
 - **Portable .exe** — Single file, no installation required
 
@@ -36,7 +37,7 @@ A lightweight Windows desktop overlay for Valorant that displays your current **
 │                             │
 │  [■ DETENER]                │
 │                             │
-│  Ctrl + Shift + R  para overlay    │
+│  Alt + Shift + T  para overlay    │
 └─────────────────────────────┘
 ```
 
@@ -63,7 +64,7 @@ A lightweight Windows desktop overlay for Valorant that displays your current **
 1. Download `RankedOverlay.exe` from [Releases](../../releases)
 2. Double-click to run
 3. Click **INICIAR** in the control panel
-4. Press `Ctrl+Shift+R` in-game to show/hide the overlay
+4. Press `Alt+Shift+T` in-game to show/hide the overlay
 
 > **Note:** Windows SmartScreen may show a warning since the app is unsigned. Click "More info" → "Run anyway".
 
@@ -167,7 +168,8 @@ Competitive, Unrated, Spike Rush, Deathmatch, Escalation, Replication, Swiftplay
 
 | Setting | Default | Description |
 |---------|---------|-------------|
-| Shortcut | `Ctrl+Shift+R` | Toggle overlay visibility |
+| Shortcut | `Alt+Shift+T` | Toggle overlay visibility |
+| Ranked Reminder | Off | Alert when queueing unrated instead of competitive |
 | Position | Top-right | Overlay screen position |
 | Refresh | 30s | Auto-update interval |
 
@@ -176,10 +178,10 @@ Competitive, Unrated, Spike Rush, Deathmatch, Escalation, Replication, Swiftplay
 | Issue | Solution |
 |-------|----------|
 | "Valorant no está corriendo" | Make sure the Riot Client and Valorant are open |
-| Overlay doesn't appear | Press `Ctrl+Shift+R` — make sure you clicked INICIAR first |
+| Overlay doesn't appear | Press `Alt+Shift+T` — make sure you clicked INICIAR first |
 | Wrong rank shown | Restart the app to refresh authentication tokens |
 | SmartScreen warning | Click "More info" → "Run anyway" (app is unsigned) |
-| Shortcut conflict | Close other apps using `Ctrl+Shift+R` |
+| Shortcut conflict | Close other apps using `Alt+Shift+T` |
 
 ## Tech Stack
 
